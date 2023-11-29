@@ -22,3 +22,8 @@ df = df.set_index('Fruit')
 selected_fruits_index = streamlit.multiselect("Pick some fruits : ", list(df.index))
 # now since we have a categprical column as index, we'll use loc instead of iloc
 streamlit.dataframe(df.loc[selected_fruits_index])
+
+
+
+# let's put a pick list here so that user can pick the fruit they want to include
+streamlit.multiselect("Pick fruits : ", list(df.index),['Avocado','Strawberries'])
