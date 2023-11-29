@@ -12,3 +12,7 @@ streamlit.dataframe(df)
 
 # let's create a pick list here so that user can pick the fruit they want to include
 streamlit.multiselect("Pick some fruits : ", list(df.index))
+
+#display the table on page
+streamlit.dataframe(df)
+
