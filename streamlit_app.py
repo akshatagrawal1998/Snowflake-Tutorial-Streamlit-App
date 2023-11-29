@@ -10,11 +10,15 @@ import pandas as pd
 df = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 streamlit.dataframe(df)
 
-# now let's change the indexes from 0,1,2,.. to fruits column
+# let's create a pick list here so that user can pick the fruit they want to include
+selected_fruits_index = streamlit.multiselect("Pick some fruits : ", list(df.index))
 
+streamlit.dataframe(df.iloc[selected_fruits_index])
+
+# now let's change the indexes from 0,1,2,.. to fruits column
 df = df.set_index('Fruit')
 
 # let's create a pick list here so that user can pick the fruit they want to include
 selected_fruits_index = streamlit.multiselect("Pick some fruits : ", list(df.index))
-
+# now since we have a categprical column as index, we'll use loc instead of iloc
 streamlit.dataframe(df.loc[selected_fruits_index])
