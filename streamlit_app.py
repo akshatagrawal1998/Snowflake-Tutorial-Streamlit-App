@@ -14,5 +14,5 @@ streamlit.dataframe(df)
 selected_fruits = streamlit.multiselect("Pick some fruits : ", list(df.index))
 
 #display the table on page
-streamlit.dataframe(selected_fruits)
+streamlit.dataframe(df[[selected_fruits]])
 
