@@ -13,5 +13,5 @@ streamlit.dataframe(df)
 # let's create a pick list here so that user can pick the fruit they want to include
 selected_fruits_index = streamlit.multiselect("Pick some fruits : ", list(df.index))
 
-streamlit.dataframe(df[selected_fruits_index])
+streamlit.dataframe(df.iloc[selected_fruits_index])
 
