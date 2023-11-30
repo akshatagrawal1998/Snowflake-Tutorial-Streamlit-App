@@ -90,7 +90,5 @@ streamlit.dataframe(my_data_rows)
 
 # challenge lab
 # let's create a pick list here so that user can pick the fruit they want to include
-selected_fruits_index = streamlit.multiselect("What fruits would you like information about? ", list(df.index))
-# now since we have a categprical column as index, we'll use loc instead of iloc
-streamlit.text("Thanks for selecting ", df.loc[selected_fruits_index]['Fruit'])
-streamlit.text(df.loc[selected_fruits_index])
+selected_fruits_index = streamlit.multiselect("What fruits would you like information about? ", list(my_data_rows))
+
