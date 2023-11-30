@@ -29,3 +29,13 @@ streamlit.dataframe(df.loc[selected_fruits_index])
 
 # let's put a pick list here so that user can pick the fruit they want to include
 streamlit.multiselect("Pick fruits : ", list(df.index),['Avocado','Strawberries'])
+
+
+
+
+-- Let's Call the Fruityvice API from Our Streamlit App!
+
+
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fruityvice_response)
