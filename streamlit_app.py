@@ -62,6 +62,23 @@ try:
 except URLError as e:
   streamlit.error()
 
+    
+# function definition
+def get_fruityvice_data(this_fruit_choice):
+      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
+      fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+      return fruityvice_normalized
+#section to display fruityvice api repsonse
+streamlit.header("Fruityvice Fruit Advice")
+try:
+  fruit_choice = streamlit.text_input('What fruit would you like info about?')
+  if not fruit_choice:
+    streamlit.error("Please select a fruit to get info")
+  else:
+    back_from_function = get_fruityvice_data(fruit_choice)
+    streamlit.dataframe(back_from_function)
+except URLError as e:
+  streamlit.error()
 
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
