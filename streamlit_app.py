@@ -94,6 +94,6 @@ selected_fruit = streamlit.multiselect("What fruits would you like information a
 
 streamlit.write("Thanks for selecting ", selected_fruit[0])
 
-
-
+-- inserting more values in the snowflake table from streamlit
+my_cur.execute("insert into FRUIT_LOAD_LIST values ('from streamlit')");
 
