@@ -79,5 +79,10 @@ my_data_row = my_cur.fetchone()
 streamlit.text("The fruit list contains")
 streamlit.text(my_data_row)
 
-streamlit.header("The fruit list contains")
+streamlit.header("The fruit list contains - one row")
 streamlit.dataframe(my_data_row)
+
+# let's fetch all rows instead of just one
+my_data_rows = my_cur.fetchall)
+streamlit.header("The fruit list contains - all rows")
+streamlit.dataframe(my_data_rows)
