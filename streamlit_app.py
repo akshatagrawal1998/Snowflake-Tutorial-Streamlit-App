@@ -83,6 +83,6 @@ streamlit.header("The fruit list contains - one row")
 streamlit.dataframe(my_data_row)
 
 # let's fetch all rows instead of just one
-my_data_rows = my_cur.fetchall())
+my_data_rows = my_cur.fetchall()
 streamlit.header("The fruit list contains - all rows")
 streamlit.dataframe(my_data_rows)
