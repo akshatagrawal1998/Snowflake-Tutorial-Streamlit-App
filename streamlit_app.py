@@ -1,4 +1,8 @@
 import streamlit
+import snowflake.connector
+import pandas as pd
+import requests
+from urllib.error import URLError
 
 streamlit.title("First Streamlit App Title for Practice")
 streamlit.title("New Healthy Diner")
@@ -8,7 +12,6 @@ streamlit.text("This is another text  🐔 🥑🍞 ")
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
-import pandas as pd
 df = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 streamlit.dataframe(df)
 
@@ -36,7 +39,6 @@ streamlit.multiselect("Pick fruits : ", list(df.index),['Avocado','Strawberries'
 
 streamlit.header("Fruityvice Fruit Advice!")
 
-import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 streamlit.text(fruityvice_response.json())
 
@@ -46,7 +48,6 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 
-import requests
 fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
 fruityvice_normalized1 = pd.json_normalize(fruityvice_response1.json())
 
@@ -63,8 +64,9 @@ fruityvice_normalized2 = pd.json_normalize(fruityvice_response2.json())
 
 streamlit.dataframe(fruityvice_normalized2)
 
+#don't run anything past here while we troubleshoot
 
-import snowflake.connector
+
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
