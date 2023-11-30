@@ -90,5 +90,5 @@ streamlit.dataframe(my_data_rows)
 
 # challenge lab
 # let's create a pick list here so that user can pick the fruit they want to include
-selected_fruits_index = streamlit.multiselect("What fruits would you like information about? ", list(my_data_rows))
+selected_fruits_index = streamlit.multiselect("What fruits would you like information about? ", my_data_rows)
 
