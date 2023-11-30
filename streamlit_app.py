@@ -79,6 +79,7 @@ try:
     streamlit.dataframe(back_from_function)
 
 
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 #move fruit load list query and load into a button action
 streamlit.header("The fruit load list contains : ")
 #snowflake related functions
