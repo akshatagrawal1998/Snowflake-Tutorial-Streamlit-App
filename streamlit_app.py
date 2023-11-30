@@ -32,7 +32,6 @@ streamlit.multiselect("Pick fruits : ", list(df.index),['Avocado','Strawberries'
 
 
 
-
 # Let's Call the Fruityvice API from Our Streamlit App!
 
 streamlit.header("Fruityvice Fruit Advice!")
