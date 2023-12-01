@@ -109,8 +109,11 @@ if streamlit.button('Add a Fruit to the list'):
   my_cnx.close()
   streamlit.text(back_from_function)
 
-  
-
+#challenge lab lesson 12
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+def insert_row_snowflake_challenge_lab(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into fruit_load_list values ('jackfruit')")
 
 
 
