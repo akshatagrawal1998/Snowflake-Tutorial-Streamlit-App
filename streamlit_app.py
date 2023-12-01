@@ -29,10 +29,8 @@ selected_fruits_index = streamlit.multiselect("Pick some fruits : ", list(df.ind
 streamlit.dataframe(df.loc[selected_fruits_index])
 
 
-
 # let's put a pick list here so that user can pick the fruit they want to include
 streamlit.multiselect("Pick fruits : ", list(df.index),['Avocado','Strawberries'])
-
 
 
 # Let's Call the Fruityvice API from Our Streamlit App!
@@ -42,11 +40,8 @@ streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 streamlit.text(fruityvice_response.json())
 
-
-
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
-
 
 # new section added in Badge 2 lesson 12
 streamlit.header('Fruityvice Fruit Advice')
@@ -62,13 +57,11 @@ try:
 except URLError as e:
   streamlit.error()
 
-
 #challenge lab lesson 12
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-def insert_row_snowflake_challenge_lab(new_fruit):
+def insert_row_snowflake_challenge_lab():
   with my_cnx.cursor() as my_cur:
     my_cur.execute("insert into fruit_load_list values ('jackfruit')")
-
 
 
 # function definition
@@ -118,12 +111,10 @@ if streamlit.button('Add a Fruit to the list'):
   streamlit.text(back_from_function)
 
 
-
 fruityvice_response1 = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
 fruityvice_normalized1 = pd.json_normalize(fruityvice_response1.json())
 
 streamlit.dataframe(fruityvice_normalized1)
-
 
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
