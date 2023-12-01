@@ -4,6 +4,18 @@ import pandas as pd
 import requests
 from urllib.error import URLError
 
+
+#challenge lab lesson 12
+new_fruit = streamlit.text_input('What fruit would you like to add?')
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+def insert_row_snowflake_challenge_lab(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into fruit_load_list values(' " + jackfruit +"')")
+    return "Thanks for adding " + new_fruit
+
+
+
+
 streamlit.title("First Streamlit App Title for Practice")
 streamlit.title("New Healthy Diner")
 streamlit.header(' 🥣 Brekfast Menu - Header')
@@ -57,11 +69,6 @@ try:
 except URLError as e:
   streamlit.error()
 
-#challenge lab lesson 12
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-def insert_row_snowflake_challenge_lab():
-  with my_cnx.cursor() as my_cur:
-    my_cur.execute("insert into fruit_load_list values ('jackfruit')")
 
 
 # function definition
