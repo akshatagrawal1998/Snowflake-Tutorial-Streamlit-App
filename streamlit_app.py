@@ -62,7 +62,15 @@ try:
 except URLError as e:
   streamlit.error()
 
-    
+
+#challenge lab lesson 12
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+def insert_row_snowflake_challenge_lab(new_fruit):
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("insert into fruit_load_list values ('jackfruit')")
+
+
+
 # function definition
 def get_fruityvice_data(this_fruit_choice):
       fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
@@ -108,13 +116,6 @@ if streamlit.button('Add a Fruit to the list'):
   back_from_button = insert_row_snowflake(add_my_fruit)
   my_cnx.close()
   streamlit.text(back_from_function)
-
-#challenge lab lesson 12
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-def insert_row_snowflake_challenge_lab(new_fruit):
-  with my_cnx.cursor() as my_cur:
-    my_cur.execute("insert into fruit_load_list values ('jackfruit')")
-
 
 
 
