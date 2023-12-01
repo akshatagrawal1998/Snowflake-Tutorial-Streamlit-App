@@ -93,6 +93,7 @@ def get_fruit_load_list():
 if streamlit.button('Get fruit load list'):
   my_cnx=snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_data_rows = get_fruit_load_list()
+  my_cnx.close()
   streamlit.dataframe(my_data_rows)
 
 
@@ -105,6 +106,7 @@ add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 if streamlit.button('Add a Fruit to the list'):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   back_from_button = insert_row_snowflake(add_my_fruit)
+  my_cnx.close()
   streamlit.text(back_from_function)
 
   
@@ -137,13 +139,16 @@ my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
+my_cnx.close()
 streamlit.text("Hello from Snowflake:")
 streamlit.text(my_data_row)
 
 # querying from snowflake table using streamlit
-
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")
 my_data_row = my_cur.fetchone()
+my_cnx.close()
 streamlit.text("The fruit list contains")
 streamlit.text(my_data_row)
 
@@ -151,7 +156,10 @@ streamlit.header("The fruit list contains - one row")
 streamlit.dataframe(my_data_row)
 
 # let's fetch all rows instead of just one
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
 my_data_rows = my_cur.fetchall()
+my_cnx.close()
 streamlit.header("The fruit list contains - all rows")
 streamlit.dataframe(my_data_rows)
 
@@ -163,5 +171,8 @@ selected_fruit = streamlit.multiselect("What fruits would you like information a
 streamlit.write("Thanks for selecting ", selected_fruit[0])
 
 # inserting more values in the snowflake table from streamlit
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
 my_cur.execute("insert into FRUIT_LOAD_LIST values ('from streamlit')");
+my_cnx.close()
 
